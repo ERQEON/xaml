@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xaml</title>
+    <link rel="icon" href="logo.jpg">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+        .clickable-image {
+            display: block;
+            margin: 20px auto;
+            width: 350px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.1s ease-out;
+            border: 2px solid transparent;
+        }
+        .clickable-image:active {
+            transform: scale(0.95);
+        }
+        .btn {
+            background-color: black;
+            padding: 15px 46px;
+            border: .1vh solid black;
+            border-radius: 21px;
+            color: white;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1><span id="num">0</span></h1>
+    <img src="money.png" class="clickable-image" id="main" draggable="false">
+    <button onclick="resetCounter()" class="btn">Очистить</button>
+    <script>
+    let counter = Number(localStorage.getItem("counter")) || 0;
+    
+    const pressing_img = document.getElementById("main");
+    const number = document.getElementById("num");
+    
+    number.textContent = counter;
+    
+    pressing_img.addEventListener("click", function() {
+        counter++;
+        number.textContent = counter;
+        localStorage.setItem("counter", counter);
+    });
+    
+    function resetCounter() {
+        counter = 0;
+        number.textContent = counter;
+        localStorage.setItem("counter", counter);
+}
+    </script>
+</body>
+</html>
